@@ -1,0 +1,163 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart', 'line' ]});
+
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(draw_w);
+
+     
+    function drawChart() {
+      
+      var queryString = encodeURIComponent('SELECT A, B LIMIT 30 OFFSET 3');
+      
+     if (document.getElementById("m0").checked){
+      	var queryString = encodeURIComponent('SELECT A, B LIMIT 30 OFFSET 3');
+      	}
+     if (document.getElementById("m1").checked){
+      	var queryString = encodeURIComponent('SELECT A, D LIMIT 30 OFFSET 3');
+      	} 	
+     if (document.getElementById("m2").checked) {
+      	var queryString = encodeURIComponent('SELECT A, E LIMIT 30 OFFSET 3');
+      	}  	   	
+     if (document.getElementById("m3").checked) {
+      	var queryString = encodeURIComponent('SELECT A, F LIMIT 30 OFFSET 3');
+      	}  	   	
+     if (document.getElementById("m4").checked) {
+      	var queryString = encodeURIComponent('SELECT A, G LIMIT 30 OFFSET 3');
+      	}  	   	
+     if (document.getElementById("m5").checked) {
+      	var queryString = encodeURIComponent('SELECT A, H LIMIT 30 OFFSET 3');
+      	}  	   	
+     if (document.getElementById("m6").checked) {
+      	var queryString = encodeURIComponent('SELECT A, I LIMIT 30 OFFSET 3');
+      	}  	   	
+     if (document.getElementById("m7").checked) {
+      	var queryString = encodeURIComponent('SELECT A, J LIMIT 30 OFFSET 3');
+      	}  	   	
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1hV5w1aO29waAz7i3S34Hrw3mLUCCs47aDw8wuXkPpw8/gviz/tq?gid=1149128234&headers=1&tq=' + queryString);
+      query.send(handleSampleDataQueryResponse);
+      
+    }
+    
+    function draw_w(){
+    var queryString = encodeURIComponent('SELECT A, B LIMIT 30 OFFSET 0');
+
+	var query = new google.visualization.Query(
+	'https://docs.google.com/spreadsheets/d/1-hTOnbjrTl22nAxE-R5VboE6cUsPfgGAnpm26qkMwOU/gviz/tq?gid=1713539896&headers=1&tq=' + queryString);
+      query.send(handleSampleDataQueryResponseW);
+    
+    }
+    
+    function draw_tracker(){
+    var queryString = encodeURIComponent('SELECT A, C LIMIT 13 OFFSET 0');
+
+	var query = new google.visualization.Query(
+	'https://docs.google.com/spreadsheets/d/1hV5w1aO29waAz7i3S34Hrw3mLUCCs47aDw8wuXkPpw8/gviz/tq?gid=878551303&headers=1&tq=' + queryString);
+      query.send(handleSampleDataQueryResponseT);
+    
+    }
+
+    function handleSampleDataQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+     
+    var options = {'title':'Meetings by Wye leaders',
+    				'legend':'top',
+                     'width':1500,
+                     'height':400};
+                       
+    var data_track = response.getDataTable();
+    var chart_tracker = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart_tracker.draw(data_track, options);
+ }
+      
+   function handleSampleDataQueryResponseW(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+      
+
+	    var options = {'title':'WhatsApp messages by Wye leaders',
+	    			'legend':'top',
+                     'width':1500,
+                     'height':400};
+
+      var data_what = response.getDataTable();
+      var chart_whatsapp = new google.visualization.ColumnChart(document.getElementById('whatsapp_chart'));
+     chart_whatsapp.draw(data_what, options);
+}
+
+
+
+    function handleSampleDataQueryResponseT(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+     
+    var options = {'title':'Totla meetings by month',
+    				'legend':'top',
+                     'width':1500,
+                     'height':400};
+                       
+    var data_track = response.getDataTable();
+    var chart_tracker = new google.charts.Line(document.getElementById('chart_month'));
+    chart_tracker.draw(data_track, options);
+ }
+    </script>
+    
+    <style>
+
+</style>  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+ 
+  </head>
+
+  <body>
+<div class="btn-group" >
+  <button type="button" id = "eng" value ="1" class="btn btn-primary"  onclick="location.href='wye_metrics_test.html'">Engagement</button>
+  <button type="button" id = "con" value ="2" class="btn btn-primary"  onclick="location.href='wye_metrics_con.html'">Connectedness</button>
+  <button type="button" id = "awa" value ="3" class="btn btn-primary"  onclick="location.href='wye_metrics_awa.html'">Awarness</button>
+</div>
+  
+      <div id="chart_div"></div>
+    
+    <br><br>
+    <b>
+    <center>
+  <input type="radio" id="m0" value="B" name = "month" onclick="drawChart()"> 2016 Total 
+  <input type="radio" id="m1" value="F" name = "month" onclick="drawChart()"> Jan, 2016 
+  <input type="radio" id="m2" value="G" name = "month" onclick="drawChart()"> Feb, 2016
+  <input type="radio" id="m3" value="G" name = "month" onclick="drawChart()"> Mar, 2016
+  <input type="radio" id="m4" value="G" name = "month" onclick="drawChart()"> Apr, 2016
+  <input type="radio" id="m5" value="G" name = "month" onclick="drawChart()"> May, 2016
+  <input type="radio" id="m6" value="G" name = "month" onclick="drawChart()"> Jun, 2016
+  <input type="radio" id="m7" value="G" name = "month" onclick="drawChart()"> July, 2016
+</center>
+</b>
+
+<hr>
+    
+  <div id="whatsapp_chart"></div>
+
+
+  </body>
+</html>
+
