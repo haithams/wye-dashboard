@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart', 'line' ]});
+
+
+    google.charts.setOnLoadCallback(draw_tracker);
+
+    function draw_tracker(){
+    var queryString = encodeURIComponent('SELECT A, B LIMIT 13 OFFSET 0');
+    
+    if (document.getElementById("m0").checked){
+      	var queryString = encodeURIComponent('SELECT A, B LIMIT 13 OFFSET 0');
+      	}
+     if (document.getElementById("m1").checked){
+      	var queryString = encodeURIComponent('SELECT A, C LIMIT 13 OFFSET 0');
+      	} 
+    
+
+	var query = new google.visualization.Query(
+	'https://docs.google.com/spreadsheets/d/1hV5w1aO29waAz7i3S34Hrw3mLUCCs47aDw8wuXkPpw8/gviz/tq?gid=878551303&headers=1&tq=' + queryString);
+      query.send(handleSampleDataQueryResponseT);
+    
+    }
+
+  
+
+    function handleSampleDataQueryResponseT(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+     
+    var options = {'title':'Totla meetings by month',
+    				'legend':'top',
+                     'width':1200,
+                     'height':400
+                     ,pointSize: 30,
+                     pointShape: 'circle'};
+                       
+    var data_track = response.getDataTable();
+    var chart_tracker = new google.charts.Line(document.getElementById('chart_month'));
+    chart_tracker.draw(data_track, options);
+ }
+    </script>
+    
+    <style>
+
+</style>  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+ 
+  </head>
+
+  <body>
+  
+
+  
+<div class="btn-group" >
+  <button type="button" id = "eng" value ="1" class="btn btn-primary"  onclick="location.href='wye_metrics_test.html'">Engagement</button>
+  <button type="button" id = "con" value ="2" class="btn btn-primary"  onclick="location.href='wye_metrics_con.html'">Connectedness</button>
+  <button type="button" id = "awa" value ="3" class="btn btn-primary"  onclick="location.href='wye_metrics_awa.html'">Awarness</button></div>
+      
+      
+      <br><br>
+
+    
+    <div id="chart_month"></div>
+
+
+    <br><br>
+    <b>
+    <center>
+  <input type="radio" id="m0" name = "month" onclick="draw_tracker()"> Total Meetings
+  <input type="radio" id="m1" name = "month" onclick="draw_tracker()"> Leaders Connected 
+</center>
+</b>
+
+<iframe
+  src="https://kumu.io/embed/d187d5764e32541a237384ec44801752"
+  width="940" height="600" frameborder="0"></iframe>
+  
+
+  </body>
+</html>
+
