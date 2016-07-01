@@ -13,13 +13,13 @@
     google.charts.setOnLoadCallback(draw_tracker);
 
     function draw_tracker(){
-    var queryString = encodeURIComponent('SELECT A, B LIMIT 13 OFFSET 0');
+    var queryString = encodeURIComponent('SELECT A, B, C, D LIMIT 13 OFFSET 0');
     
     if (document.getElementById("m0").checked){
-      	var queryString = encodeURIComponent('SELECT A, B LIMIT 13 OFFSET 0');
+      	var queryString = encodeURIComponent('SELECT A, B, C, D LIMIT 13 OFFSET 0');
       	}
      if (document.getElementById("m1").checked){
-      	var queryString = encodeURIComponent('SELECT A, C LIMIT 13 OFFSET 0');
+      	var queryString = encodeURIComponent('SELECT A, E,F,G LIMIT 13 OFFSET 0');
       	} 
     
 
@@ -40,12 +40,12 @@
     var options = {'title':'Totla meetings by month',
     				'legend':'top',
                      'width':1200,
-                     'height':400
-                     ,pointSize: 30,
-                     pointShape: 'circle'};
+                     'height':400,
+                     seriesType: 'lines',
+                     series: {0: {type: 'bars'}}};
                        
     var data_track = response.getDataTable();
-    var chart_tracker = new google.charts.Line(document.getElementById('chart_month'));
+    var chart_tracker = new google.visualization.ComboChart(document.getElementById('chart_month'));
     chart_tracker.draw(data_track, options);
  }
     </script>
@@ -82,18 +82,14 @@
     <br><br>
     <b>
     <center>
-  <input type="radio" id="m0" name = "month" onclick="draw_tracker()"> Total Meetings
-  <input type="radio" id="m1" name = "month" onclick="draw_tracker()"> Leaders Connected 
+  <input type="radio" id="m0" name = "month" onclick="draw_tracker()"> Engagement Score
+  <input type="radio" id="m1" name = "month" onclick="draw_tracker()"> Leaders Engaged 
 </center>
 </b>
 
-<br>
-<hr>
-<br>
-
-<iframe
+<!--<iframe
   src="https://kumu.io/embed/d187d5764e32541a237384ec44801752"
-  width="940" height="600" frameborder="0"></iframe>
+  width="940" height="600" frameborder="0"></iframe>-->
   
 
   </body>
