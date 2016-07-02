@@ -11,16 +11,11 @@
 
 
     google.charts.setOnLoadCallback(draw_tracker);
+    google.charts.setOnLoadCallback(draw_tracker2);
+
 
     function draw_tracker(){
     var queryString = encodeURIComponent('SELECT A, B, C, D LIMIT 13 OFFSET 0');
-    
-    if (document.getElementById("m0").checked){
-      	var queryString = encodeURIComponent('SELECT A, B, C, D LIMIT 13 OFFSET 0');
-      	}
-     if (document.getElementById("m1").checked){
-      	var queryString = encodeURIComponent('SELECT A, E,F,G LIMIT 13 OFFSET 0');
-      	} 
     
 
 	var query = new google.visualization.Query(
@@ -28,6 +23,20 @@
       query.send(handleSampleDataQueryResponseT);
     
     }
+    
+    
+    function draw_tracker2(){
+
+    var queryString = encodeURIComponent('SELECT A, E,F,G LIMIT 13 OFFSET 0');
+
+    
+
+	var query = new google.visualization.Query(
+	'https://docs.google.com/spreadsheets/d/1hV5w1aO29waAz7i3S34Hrw3mLUCCs47aDw8wuXkPpw8/gviz/tq?gid=878551303&headers=1&tq=' + queryString);
+      query.send(handleSampleDataQueryResponse2);
+    
+    }
+
 
   
 
@@ -39,7 +48,7 @@
      
     var options = {'title':'2016 Monthly Engagements',
     				'legend':'top',
-                     'width':1200,
+                     'width':1000,
                      'height':400,
                      seriesType: 'lines',
                      series: {0: {type: 'bars'}}};
@@ -48,9 +57,33 @@
     var chart_tracker = new google.visualization.ComboChart(document.getElementById('chart_month'));
     chart_tracker.draw(data_track, options);
  }
+ 
+ 
+     function handleSampleDataQueryResponse2(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+     
+    var options = {'title':'2016 Monthly Engagements',
+    				'legend':'top',
+                     'width':1000,
+                     'height':400,
+                     seriesType: 'lines',
+                     series: {0: {type: 'bars'}}};
+                       
+    var data_track = response.getDataTable();
+    var chart_tracker = new google.visualization.ComboChart(document.getElementById('chart_month2'));
+    chart_tracker.draw(data_track, options);
+ }
     </script>
     
     <style>
+    
+    .col-wrapper{width:1960px; margin:0 auto;}
+.col{margin:0 10px; float:left; display:inline;}
+.col-670{width:870px;}
+.col-250{width:250px;}
 
 </style>  
 
@@ -75,15 +108,18 @@
       
       <br><br>
 
-    
-    <div id="chart_month"></div>
-
+ <div class="col-wrapper">
+   
+    <div class="col col-670" id="chart_month"></div>
+    <div class="col col-250" id="chart_month2"></div>
+  </div> 
 
     <br><br>
     <b>
-    <center>
-  <input type="radio" id="m0" name = "month" onclick="draw_tracker()"> Engagement Score
-  <input type="radio" id="m1" name = "month" onclick="draw_tracker()"> Leaders Engaged 
+    <center>    
+
+ 
+
 </center>
 </b>
 
