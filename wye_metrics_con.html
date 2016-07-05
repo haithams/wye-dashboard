@@ -15,8 +15,9 @@
 
 
     function draw_tracker(){
-    var queryString = encodeURIComponent('SELECT A, B, C, D LIMIT 13 OFFSET 0');
-    
+    //var queryString = encodeURIComponent('SELECT A, B, C, D LIMIT 13 OFFSET 0');
+    var queryString = encodeURIComponent('SELECT A, B LIMIT 13 OFFSET 0');
+
 
 	var query = new google.visualization.Query(
 	'https://docs.google.com/spreadsheets/d/1hV5w1aO29waAz7i3S34Hrw3mLUCCs47aDw8wuXkPpw8/gviz/tq?gid=878551303&headers=1&tq=' + queryString);
@@ -26,8 +27,8 @@
     
     
     function draw_tracker2(){
-
-    var queryString = encodeURIComponent('SELECT A, E,F,G LIMIT 13 OFFSET 0');
+    var queryString = encodeURIComponent('SELECT A, E LIMIT 13 OFFSET 0');
+    //var queryString = encodeURIComponent('SELECT A, E,F,G LIMIT 13 OFFSET 0');
 
     
 
@@ -50,8 +51,9 @@
     				'legend':'top',
                      'width':1000,
                      'height':400,
+                     fontName: 'Open Sans',
                      seriesType: 'lines',
-                     series: {0: {type: 'bars'}}};
+                     series: {0: {type: 'bars' , color: '#5bc0de'}}};
                        
     var data_track = response.getDataTable();
     var chart_tracker = new google.visualization.ComboChart(document.getElementById('chart_month'));
@@ -69,8 +71,9 @@
     				'legend':'top',
                      'width':1000,
                      'height':400,
+                    fontName: 'Open Sans',
                      seriesType: 'lines',
-                     series: {0: {type: 'bars'}}};
+                     series: {0: {type: 'bars', color: '#5cb85c'}}};
                        
     var data_track = response.getDataTable();
     var chart_tracker = new google.visualization.ComboChart(document.getElementById('chart_month2'));
@@ -101,9 +104,9 @@
 
   
 <div class="btn-group" >
-  <button type="button" id = "eng" value ="1" class="btn btn-primary"  onclick="location.href='wye_metrics_eng.html'">Engagement</button>
-  <button type="button" id = "con" value ="2" class="btn btn-primary"  onclick="location.href='wye_metrics_con.html'">Connectedness</button>
-  <button type="button" id = "awa" value ="3" class="btn btn-primary"  onclick="location.href='wye_metrics_awa.html'">Awarness</button></div>
+  <button type="button" id = "eng" value ="1" class="btn btn-primary"  onclick="location.href='wye_metrics_eng.html'">Wye Design Dashboard</button>
+  <button type="button" id = "con" value ="2" class="btn btn-primary"  onclick="location.href='wye_metrics_con.html'">Wye Dashboard</button>
+  <!--<button type="button" id = "awa" value ="3" class="btn btn-primary"  onclick="location.href='wye_metrics_awa.html'">Awarness</button></div>-->
       
       
       <br><br>
