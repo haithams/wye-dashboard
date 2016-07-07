@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart', 'line' ]});
+
+
+    google.charts.setOnLoadCallback(draw_tracker);
+
+
+    function draw_tracker(){
+    var queryString = encodeURIComponent('SELECT A, B, E LIMIT 13 OFFSET 0');
+
+
+	var query = new google.visualization.Query(
+	'https://docs.google.com/spreadsheets/d/1hV5w1aO29waAz7i3S34Hrw3mLUCCs47aDw8wuXkPpw8/gviz/tq?gid=878551303&headers=1&tq=' + queryString);
+      query.send(handleSampleDataQueryResponseT);
+    
+    }
+  
+
+    function handleSampleDataQueryResponseT(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+     
+    var options = {'title':'2016 Monthly Engagements',
+    				'legend':'top',
+                     'width':1000,
+                     'height':400,
+                     fontName: 'Open Sans',
+                     seriesType: 'lines',
+                     series: {0: {type: 'bars' , color: '#5bc0de'}}};
+                       
+    var data_track = response.getDataTable();
+    var chart_tracker = new google.visualization.ComboChart(document.getElementById('chart_month'));
+    chart_tracker.draw(data_track, options);
+ }
+ 
+    </script>
+    
+    <style>
+    
+    .col-wrapper{width:1960px; margin:0 auto;}
+.col{margin:0 10px; float:left; display:inline;}
+.col-670{width:870px;}
+.col-250{width:250px;}
+
+</style>  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+ 
+  </head>
+
+  <body>
+  
+
+        
+      <br><br>
+ 
+    <div class="col col-670" id="chart_month"></div>
+
+</b>
+
+<!--<iframe
+  src="https://kumu.io/embed/d187d5764e32541a237384ec44801752"
+  width="940" height="600" frameborder="0"></iframe>-->
+  
+
+  </body>
+</html>
+
