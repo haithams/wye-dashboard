@@ -62,7 +62,10 @@
                     fontName: 'Open Sans',
                     fontSize: '10',
 					'chartArea':{ 'width': '90%', 'height': '80%'},
-					series: {0: {type: 'bars' , color: '#5bc0de'}}};
+					series: {0: {type: 'bars' , color: '#5bc0de'}},
+					'vAxis': {'title': 'Number of messages',
+ 					'minValue': 0, 
+ 					'maxValue': 20}};
                      
 
       var data = response.getDataTable();
