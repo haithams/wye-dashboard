@@ -60,7 +60,7 @@
                      'width':1800,
                      'height':400,
                     fontName: 'Open Sans',
-                    fontSize: '10',
+                    fontSize: '12',
 					'chartArea':{ 'width': '90%', 'height': '80%'},
 					series: {0: {type: 'bars' , color: '#5bc0de'}},
 					'vAxis': {'title': 'Number of messages',
@@ -78,22 +78,19 @@
     
     <style>
 
-</style>  
+div {
+   font-family: "Open Sans";
+    font-size: 13px;
+ 
+}
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</style>  
 
  
   </head>
 
   <body>
-<div class="btn-group" >
-  <button type="button" id = "eng" value ="1" class="btn btn-primary"  onclick="location.href='wye_metrics_eng.html'">Old - Wye Design Dashboard</button>
-    <button type="button" id = "con" value ="2" class="btn btn-primary"  onclick="location.href='wye_metrics_live.html'">Engagement Tracker</button>
-    <button type="button" id = "con" value ="2" class="btn btn-primary"  onclick="location.href='wye_metrics_whatsapp.html'">WhatsApp</button>
 
   
       <div id="whatsapp_chart"></div>
@@ -101,6 +98,7 @@
     <br><br>
     <b>
     <center>
+  <div>
   <input type="radio" id="m0" value="B" name = "month" onclick="drawChart()"> 2016 Total 
   <input type="radio" id="m1" value="F" name = "month" onclick="drawChart()"> Jun, 2016 
   <input type="radio" id="m2" value="G" name = "month" onclick="drawChart()"> Jul, 2016
@@ -109,8 +107,9 @@
   <input type="radio" id="m5" value="G" name = "month" onclick="drawChart()"> Oct, 2016
   <input type="radio" id="m6" value="G" name = "month" onclick="drawChart()"> Nov, 2016
   <input type="radio" id="m7" value="G" name = "month" onclick="drawChart()"> Dec, 2016
+  </div>
 </center>
-</b>
+
 
 
 
