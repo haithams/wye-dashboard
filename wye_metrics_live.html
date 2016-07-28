@@ -37,7 +37,10 @@
                      fontName: 'Open Sans',
                      'chartArea':{ 'width': '90%', 'height': '80%'},
                      seriesType: 'lines',
-                     series: {0: {type: 'bars' , color: '#5bc0de'}}};
+                     series: {0: {type: 'bars' , color: '#5bc0de'}},
+                     'vAxis': {'title': 'Number of messages',
+ 					'minValue': 0, 
+ 					'maxValue': 40}};
                        
     var data_track = response.getDataTable();
     var chart_tracker = new google.visualization.ComboChart(document.getElementById('chart_month'));
