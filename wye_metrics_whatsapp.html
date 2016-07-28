@@ -14,8 +14,13 @@
      
     function drawChart() {
       
-      var queryString = encodeURIComponent('SELECT B, C LIMIT 30 OFFSET 0');
-      
+      var queryString = encodeURIComponent('SELECT L, M LIMIT 8 OFFSET 0');
+
+
+     if (document.getElementById("m").checked){
+      	var queryString = encodeURIComponent('SELECT L, M LIMIT 8 OFFSET 0');
+      	}
+
      if (document.getElementById("m0").checked){
       	var queryString = encodeURIComponent('SELECT B, C LIMIT 30 OFFSET 0');
       	}
@@ -99,6 +104,7 @@ div {
     <b>
     <center>
   <div>
+	<input type="radio" id="m" value="B" name = "month" onclick="drawChart()"> Total Messages
   <input type="radio" id="m0" value="B" name = "month" onclick="drawChart()"> 2016 Total 
   <input type="radio" id="m1" value="F" name = "month" onclick="drawChart()"> Jun, 2016 
   <input type="radio" id="m2" value="G" name = "month" onclick="drawChart()"> Jul, 2016
